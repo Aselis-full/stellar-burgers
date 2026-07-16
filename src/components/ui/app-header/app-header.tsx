@@ -10,18 +10,11 @@ import {
 import { NavLink, useLocation } from 'react-router-dom';
 
 export const AppHeaderUI: FC<TAppHeaderUIProps> = ({ userName }) => {
-  let path = '';
-  if (userName === undefined) {
-    path = '/login';
-  } else {
-    path = '/profile';
-  }
   const location = useLocation();
   const currentPath = location.pathname;
   const isConstructorActive = currentPath === '/';
   const isFeedActive = currentPath.startsWith('/feed');
-  const isAccountActive =
-    currentPath.startsWith('/profile') || currentPath.startsWith('/login');
+  const isAccountActive = currentPath.startsWith('/profile');
   return (
     <header className={styles.header}>
       <nav className={`${styles.menu} p-4`}>
@@ -60,7 +53,7 @@ export const AppHeaderUI: FC<TAppHeaderUIProps> = ({ userName }) => {
               ? `${styles.link} ${styles.link_active} ${styles.link_position_last}`
               : `${styles.link} ${styles.link_position_last}`
           }
-          to={path}
+          to={'/profile'}
         >
           <ProfileIcon type={isAccountActive ? 'primary' : 'secondary'} />
           <p className='text text_type_main-default ml-2'>

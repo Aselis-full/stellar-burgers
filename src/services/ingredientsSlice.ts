@@ -1,6 +1,7 @@
 import { createSlice, createAsyncThunk, PayloadAction } from '@reduxjs/toolkit';
 import { TConstructorIngredient, TIngredient } from '@utils-types';
 import { getIngredientsApi } from '@api';
+import { orderBurger } from './orderSlice';
 
 interface TIngredientsState {
   ingredients: TIngredient[];
@@ -27,10 +28,6 @@ export const ingredientsSlice = createSlice({
   name: 'ingredients',
   initialState,
   reducers: {
-    clearConstructionIngredients: (state) => {
-      state.constructionIngredients = [];
-      state.bun = null;
-    },
     addConstructionIngredient: (
       state,
       { payload }: PayloadAction<TConstructorIngredient>
@@ -98,6 +95,10 @@ export const ingredientsSlice = createSlice({
       .addCase(fetchIngredients.rejected, (state, action) => {
         state.isLoading = false;
         state.error = action.error.message || 'Ошибка';
+      })
+      .addCase(orderBurger.fulfilled, (state) => {
+        state.constructionIngredients = [];
+        state.bun = null;
       });
   }
 });
@@ -114,7 +115,6 @@ export const {
 
 export const {
   addConstructionIngredient,
-  clearConstructionIngredients,
   deleteConstructionIngredient,
   moveIngredientUp,
   moveIngredientDown

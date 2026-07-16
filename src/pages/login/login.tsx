@@ -6,14 +6,12 @@ import {
   loginUser,
   selectUserError
 } from '../../services/userSlice';
-import { useNavigate } from 'react-router-dom';
 
 export const Login: FC = () => {
   const error = useSelector(selectUserError);
   const dispatch = useDispatch();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const navigate = useNavigate();
 
   useEffect(
     () => () => {

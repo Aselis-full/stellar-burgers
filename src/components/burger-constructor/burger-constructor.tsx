@@ -8,10 +8,7 @@ import {
   selectNewOrder,
   orderBurger
 } from '../../services/orderSlice';
-import {
-  clearConstructionIngredients,
-  selectConstructionIngredients
-} from '../../services/ingredientsSlice';
+import { selectConstructionIngredients } from '../../services/ingredientsSlice';
 import { selectUser } from '../../services/userSlice';
 import { useLocation, useNavigate } from 'react-router-dom';
 
@@ -40,7 +37,6 @@ export const BurgerConstructor: FC = () => {
   };
   const closeOrderModal = () => {
     dispatch(clearOrder());
-    dispatch(clearConstructionIngredients());
   };
 
   const price = useMemo(

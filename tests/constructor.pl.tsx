@@ -148,7 +148,7 @@ test('тест процесса создания заказа', async ({ context
   const modal = page.getByTestId('modal');
   await expect(modal).toBeVisible();
   const orderNumber = page.getByTestId('order-number');
-  await expect(orderNumber).toBeVisible({ setTimeout: 10000 });
+  await expect(orderNumber).toBeVisible({ timeout: 10000 });
   await expect(orderNumber).toHaveText('108261');
   await expect(addedUpBun).toBeHidden();
   await expect(addedMain).toBeHidden();
